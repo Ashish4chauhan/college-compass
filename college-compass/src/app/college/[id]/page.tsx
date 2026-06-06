@@ -9,7 +9,7 @@ interface Props {
 async function getCollege(id: string) {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/colleges/${id}`,
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/colleges/${id}`,
       {
         cache: "no-store",
       }
@@ -21,7 +21,7 @@ async function getCollege(id: string) {
 
     return await res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Failed to fetch college:", error);
     return null;
   }
 }
@@ -72,13 +72,11 @@ export default async function CollegePage({
             </h2>
 
             <p>
-              📍 <strong>Location:</strong>{" "}
-              {college.location}
+              📍 <strong>Location:</strong> {college.location}
             </p>
 
             <p>
-              ⭐ <strong>Rating:</strong>{" "}
-              {college.rating}
+              ⭐ <strong>Rating:</strong> {college.rating}
             </p>
           </div>
 
@@ -129,7 +127,7 @@ export default async function CollegePage({
             Compare Colleges
           </Link>
         </div>
-      </div>      
+      </div>
     </main>
   );
 }
