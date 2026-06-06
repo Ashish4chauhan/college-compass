@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { fetchCollegeById } from "@/src/services/college.service";
 
 interface Props {
   params: Promise<{
@@ -6,34 +7,14 @@ interface Props {
   }>;
 }
 
-async function getCollege(id: string) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/api/colleges/${id}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!res.ok) {
-      return null;
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.error("Failed to fetch college:", error);
-    return null;
-  }
-}
-
 export default async function CollegePage({
   params,
 }: Props) {
   const { id } = await params;
 
-  const result = await getCollege(id);
+  const college = await fetchCollegeById(id);
 
-  if (!result || !result.data) {
+  if (!college) {
     return (
       <main className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
@@ -55,8 +36,6 @@ export default async function CollegePage({
       </main>
     );
   }
-
-  const college = result.data;
 
   return (
     <main className="min-h-screen bg-gray-100 py-10 px-6">
