@@ -161,7 +161,7 @@ http://localhost:3000
 
 **Ashish Chauhan**
 
-- MCA Student, Amity University Haryana
+- MCA Student, Amity University Noida
 - Cloud Computing Specialization
 - Data Analytics & AI Enthusiast
 
