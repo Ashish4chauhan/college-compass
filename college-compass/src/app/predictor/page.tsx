@@ -6,8 +6,12 @@ async function getPredictions(
   rating: string
 ) {
   try {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      "https://college-compass-livid.vercel.app";
+
     const res = await fetch(
-      `http://localhost:3000/api/predictor?budget=${budget}&location=${location}&rating=${rating}`,
+      `${baseUrl}/api/predictor?budget=${budget}&location=${location}&rating=${rating}`,
       {
         cache: "no-store",
       }
