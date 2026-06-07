@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getColleges() {
   const res = await fetch(
-    "http://localhost:3000/api/colleges",
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/colleges`,
     {
       cache: "no-store",
     }
